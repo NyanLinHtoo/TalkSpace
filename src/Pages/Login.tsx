@@ -2,8 +2,11 @@ import { Button, Flex, Image, Space, Typography } from "antd";
 import Lottie from "lottie-react";
 import animationData from "../lotties/LoginAnimation.json";
 import logoBlack from "../assets/logoBlack.svg";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  const { login } = useAuth();
+
   const { Title } = Typography;
 
   return (
@@ -29,7 +32,7 @@ const Login = () => {
                 Connect Anytime,{" "}
                 <span style={{ color: "#58ABDF" }}>Without Boundaries</span>
               </Title>
-              <Button type="primary" block size="large">
+              <Button type="primary" block size="large" onClick={login}>
                 Login With Google
               </Button>
             </Space>
