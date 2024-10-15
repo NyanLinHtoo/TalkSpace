@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Space, Typography } from "antd";
+import { Button, Flex, Image, Typography } from "antd";
 import Lottie from "lottie-react";
 import animationData from "../lotties/LoginAnimation.json";
 import logoBlack from "../assets/logoBlack.svg";
@@ -20,22 +20,15 @@ const Login = () => {
         }}>
         <Flex gap="middle" justify="center" align="center">
           <Lottie animationData={animationData} />
-          <Flex vertical align="center">
-            <Space size="middle" direction="vertical">
-              <Image
-                width={200}
-                preview={false}
-                src={logoBlack}
-                style={{ marginLeft: "40%" }}
-              />
-              <Title level={4}>
-                Connect Anytime,{" "}
-                <span style={{ color: "#58ABDF" }}>Without Boundaries</span>
-              </Title>
-              <Button type="primary" block size="large" onClick={login}>
-                Login With Google
-              </Button>
-            </Space>
+          <Flex vertical align="center" gap="large">
+            <Image width={200} preview={false} src={logoBlack} />
+            <Title level={4}>
+              Connect Anytime,{" "}
+              <span style={{ color: "#58ABDF" }}>Without Boundaries</span>
+            </Title>
+            <Button type="primary" block size="large" onClick={login}>
+              Login With Google
+            </Button>
           </Flex>
         </Flex>
       </div>
