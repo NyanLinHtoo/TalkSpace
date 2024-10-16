@@ -4,8 +4,8 @@ interface initialStateType {
   userInfo:
     | {
         uid: string;
+        name: string;
         email: string;
-        displayName: string;
       }
     | undefined;
 }

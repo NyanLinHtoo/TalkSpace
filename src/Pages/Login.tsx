@@ -3,11 +3,23 @@ import Lottie from "lottie-react";
 import animationData from "../lotties/LoginAnimation.json";
 import logoBlack from "../assets/logoBlack.svg";
 import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { firebaseAuth } from "../utils/FirebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const { Title } = Typography;
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
+      if (currentUser) navigate("/");
+    });
+    return () => unsubscribe();
+  }, [navigate]);
 
   return (
     <Flex justify="center" align="center">

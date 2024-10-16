@@ -5,6 +5,8 @@ import dashboard3 from "../assets/dashboard3.gif";
 // import "./dashboard.css";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import useAuth from "../hooks/useAuth";
 
 interface DashboardCardProps {
   image: string;
@@ -29,9 +31,12 @@ const DashboardCard = ({
 };
 
 const Dashboard = () => {
+  useAuth();
   const navigate = useNavigate();
+
   return (
     <>
+      <Header />
       <div className="dashboard-container">
         <Row gutter={24}>
           <Col xs={24} sm={12} md={8}>

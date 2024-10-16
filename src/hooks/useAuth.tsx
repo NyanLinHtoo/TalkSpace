@@ -1,13 +1,42 @@
 import { firebaseAuth, userRef } from "../utils/FirebaseConfig";
-import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+  User,
+} from "firebase/auth";
 import { addDoc, getDocs, query, where } from "firebase/firestore";
 import { useAppDispatch } from "../app/hook";
 import { setUser } from "../app/slices/AuthSlices";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const useAuth = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const updateUserState = (user: User | null) => {
+    if (user) {
+      dispatch(
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          name: user.displayName,
+        })
+      );
+    } else {
+      dispatch(setUser(undefined));
+    }
+  };
+
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
+      updateUserState(currentUser);
+      if (!currentUser) navigate("/login");
+    });
+    return () => unSubscribe();
+  }, [dispatch, navigate]);
 
   const login = async () => {
     const provider = new GoogleAuthProvider();
