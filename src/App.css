@@ -33,3 +33,7 @@
 .dashboard-card p {
   color: #666;
 }
+
+.ant-divider {
+  margin: 0;
+}
