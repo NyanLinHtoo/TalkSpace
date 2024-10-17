@@ -1,18 +1,32 @@
-import { Breadcrumb, Flex, Tag } from "antd";
+import { Breadcrumb, Flex } from "antd";
+import { Link, useLocation } from "react-router-dom";
+import { HomeOutlined } from "@ant-design/icons";
+import { BreadcrumbItem, getBreadcrumbItems } from "../utils/breadCrumbs";
 
-interface breadCrumbsItems {
-  title: string;
-}
-interface BreadCrumbsProps {
-  breadCrumbs: breadCrumbsItems[];
-}
+const BreadCrumbs = () => {
+  const location = useLocation();
+  const breadcrumbItems: BreadcrumbItem[] = getBreadcrumbItems(location);
 
-const BreadCrumbs = ({ breadCrumbs }: BreadCrumbsProps) => {
   return (
-    <Flex align="center" style={{ height: "8vh", marginLeft: "2.5%" }}>
-      <Tag>
-        <Breadcrumb items={breadCrumbs} />
-      </Tag>
+    <Flex
+      align="center"
+      style={{
+        height: "8vh",
+        paddingLeft: "2.5%",
+        boxShadow: "0 8px 24px rgba(149, 157, 165, 0.2)",
+      }}>
+      <Breadcrumb
+        items={breadcrumbItems.map((item, index) => ({
+          title:
+            index === 0 ? (
+              <Link to={item.path}>
+                <HomeOutlined />
+              </Link>
+            ) : (
+              <Link to={item.path}>{item.title}</Link>
+            ),
+        }))}
+      />
     </Flex>
   );
 };
