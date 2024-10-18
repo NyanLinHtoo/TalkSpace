@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 export interface initialStateType {
   userInfo:
     | {
@@ -11,13 +13,13 @@ export interface initialStateType {
 export interface MeetingNameFieldProps {
   placeholder: string;
   title: string;
-  value: string;
-  setMeetingName: React.Dispatch<React.SetStateAction<string>>;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface MeetingUserFieldProps {
   title: string;
-  defaultValue: string;
+  // defaultValue: string;
   onChange: (value: string) => void;
   options: UserType[];
 }
@@ -41,4 +43,14 @@ export interface UserType {
   uid: string;
   label?: string;
   value?: string;
+}
+
+export interface MeetingDateFieldProps {
+  onChange: (date: Dayjs, dateString: string | string[]) => void;
+}
+
+export interface MeetingFormValues {
+  meetingName: string;
+  invitedUser: string;
+  meetingDate: Dayjs;
 }

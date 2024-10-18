@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const MeetingUserField = ({
   title,
-  defaultValue,
   onChange,
   options,
 }: MeetingUserFieldProps) => {
@@ -26,7 +25,7 @@ const MeetingUserField = ({
         {title}
       </Text>
       <Select
-        defaultValue={defaultValue}
+        defaultValue="Select a user"
         onChange={onChange}
         options={options}
         size="large"

@@ -7,7 +7,7 @@ const MeetingNameField = ({
   placeholder,
   title,
   value,
-  setMeetingName,
+  onChange,
 }: MeetingNameFieldProps) => {
   const { Text } = Typography;
 
@@ -33,7 +33,7 @@ const MeetingNameField = ({
         className="custom-input meeting-name"
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onChange={(e) => setMeetingName(e.target.value)}
+        onChange={onChange}
       />
     </div>
   );
