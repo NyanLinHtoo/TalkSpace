@@ -1,14 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface initialStateType {
-  userInfo:
-    | {
-        uid: string;
-        name: string;
-        email: string;
-      }
-    | undefined;
-}
+import { initialStateType } from "../../utils/Types";
 
 const initialState: initialStateType = {
   userInfo: undefined,

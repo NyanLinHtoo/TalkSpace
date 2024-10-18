@@ -1,7 +1,8 @@
 import { Breadcrumb, Flex } from "antd";
 import { Link, useLocation } from "react-router-dom";
 import { HomeOutlined } from "@ant-design/icons";
-import { BreadcrumbItem, getBreadcrumbItems } from "../utils/breadCrumbs";
+import { getBreadcrumbItems } from "../utils/breadCrumbs";
+import { BreadcrumbItem } from "../utils/Types";
 
 const BreadCrumbs = () => {
   const location = useLocation();

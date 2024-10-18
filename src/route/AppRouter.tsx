@@ -3,6 +3,7 @@ import Login from "../Pages/Login";
 import ErrorPage from "../ErrorPageHandler/ErrorPage";
 import Dashboard from "../Pages/Dashboard";
 import CreateMeeting from "../Pages/CreateMeeting";
+import OneOnOneMeeting from "../Pages/OneOnOneMeeting";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -14,6 +15,11 @@ const AppRouter = () => {
     {
       path: "/create",
       element: <CreateMeeting />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/create1on1",
+      element: <OneOnOneMeeting />,
       errorElement: <ErrorPage />,
     },
     {

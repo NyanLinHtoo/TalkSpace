@@ -1,9 +1,5 @@
 import { Location } from "react-router-dom";
-
-export interface BreadcrumbItem {
-  path: string;
-  title: string;
-}
+import { BreadcrumbItem } from "./Types";
 
 export const getBreadcrumbItems = (location: Location): BreadcrumbItem[] => {
   const pathSnippets = location.pathname.split("/").filter((i) => i);

@@ -37,3 +37,34 @@
 .ant-divider {
   margin: 0;
 }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 83vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.custom-input:focus {
+  border-color: #ffffff !important;
+  /* box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2); */
+  box-shadow: none;
+}
+
+.ant-input-outlined:hover {
+  box-shadow: none;
+  border-color: #ffffff !important;
+}
+
+.custom-input {
+  margin-top: 8px;
+  transition: all 0.3s;
+  box-shadow: none;
+}
+
+.meeting-name {
+  border-radius: 8px;
+  border-width: 2px;
+}

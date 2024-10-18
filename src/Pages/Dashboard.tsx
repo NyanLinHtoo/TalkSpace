@@ -9,8 +9,8 @@ import dashboard3 from "../assets/dashboard3.gif";
 import "../App.css";
 
 const Dashboard = () => {
-  useAuth();
   const navigate = useNavigate();
+  useAuth();
 
   return (
     <>

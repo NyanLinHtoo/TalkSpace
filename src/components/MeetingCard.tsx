@@ -1,10 +1,4 @@
-interface MeetingCardProps {
-  image: string;
-  title: string;
-  description: string;
-  onClick: () => void;
-  imageStyle?: React.CSSProperties;
-}
+import { MeetingCardProps } from "../utils/Types";
 
 const MeetingCard = ({
   image,
