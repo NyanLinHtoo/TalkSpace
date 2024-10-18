@@ -23,7 +23,11 @@ const OneOnOneMeeting: React.FC = () => {
   };
 
   const onDateChange: DatePickerProps["onChange"] = (date) => {
-    form.setFieldsValue({ meetingDate: dayjs(date).format("DD/MM/YYYY") });
+    if (date) {
+      form.setFieldsValue({ meetingDate: dayjs(date).format("DD/MM/YYYY") });
+    } else {
+      form.setFieldsValue({ meetingDate: undefined });
+    }
   };
 
   const onFinish = (values: MeetingFormValues) => {
@@ -60,7 +64,18 @@ const OneOnOneMeeting: React.FC = () => {
 
           <Form.Item
             name="meetingDate"
-            rules={[{ required: true, message: "Please select a date" }]}>
+            rules={[
+              {
+                required: true,
+                message: "Please select a date",
+                validator: (_, value) => {
+                  if (!value) {
+                    return Promise.reject("Please select a date");
+                  }
+                  return Promise.resolve();
+                },
+              },
+            ]}>
             <MeetingDateField onChange={onDateChange} />
           </Form.Item>
 
