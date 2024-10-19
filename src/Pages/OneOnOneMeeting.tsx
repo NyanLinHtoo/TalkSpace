@@ -10,12 +10,18 @@ import MeetingDateField from "../components/FormComponent/MeetingDateField";
 import { MeetingFormValues } from "../utils/Types";
 import "../App.css";
 import dayjs from "dayjs";
+import { generateMeetingId } from "../utils/generateMeetingId";
+import { addDoc } from "firebase/firestore";
+import { meetingRef } from "../utils/FirebaseConfig";
+import { useAppSelector } from "../app/hook";
+import { toast } from "sonner";
 
 const OneOnOneMeeting: React.FC = () => {
   const [form] = Form.useForm<MeetingFormValues>();
   const [users] = useFetchUsers();
   const navigate = useNavigate();
 
+  const uid = useAppSelector((state) => state.auth.userInfo?.uid);
   useAuth();
 
   const onUserChange = (value: string) => {
@@ -30,9 +36,20 @@ const OneOnOneMeeting: React.FC = () => {
     }
   };
 
-  const onFinish = (values: MeetingFormValues) => {
-    console.log("Success:", values);
-    // Here you would typically send the data to your backend
+  const onFinish = async (values: MeetingFormValues) => {
+    const meetingId = generateMeetingId();
+    await addDoc(meetingRef, {
+      createdBy: uid,
+      meetingId,
+      meetingName: values.meetingName,
+      meetingType: "1-on-1",
+      invitedUser: values.invitedUser,
+      meetingDate: values.meetingDate,
+      maxUsers: 1,
+      status: true,
+    });
+    toast.success("One On One Meeting created successfully");
+    navigate("/");
   };
 
   return (

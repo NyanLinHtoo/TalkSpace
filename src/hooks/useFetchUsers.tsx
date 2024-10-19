@@ -18,7 +18,7 @@ const useFetchUsers = () => {
         firestoreUsers.push({
           ...userData,
           label: userData.name,
-          value: userData.name,
+          value: userData.uid,
         });
       });
       setUsers(firestoreUsers);
