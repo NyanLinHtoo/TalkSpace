@@ -30,7 +30,7 @@ const CreateMeeting = () => {
               image={meeting2}
               title="Video Conference"
               description="Invite multiple persons to the meeting."
-              onClick={() => navigate("/mymeeting")}
+              onClick={() => navigate("/videoConference")}
             />
           </Col>
         </Row>

@@ -14,14 +14,22 @@ import { addDoc } from "firebase/firestore";
 import { meetingRef } from "../utils/FirebaseConfig";
 import { useAppSelector } from "../app/hook";
 import { toast } from "sonner";
+import MeetingSwitch from "../components/FormComponent/MeetingSwitch";
+import { useState } from "react";
 
-const OneOnOneMeeting = () => {
+const VideoConference = () => {
   const [form] = Form.useForm<MeetingFormValues>();
   const [users] = useFetchUsers();
   const navigate = useNavigate();
 
   const uid = useAppSelector((state) => state.auth.userInfo?.uid);
   useAuth();
+
+  const [anyoneCanJoin, setAnyoneCanJoin] = useState(false);
+
+  const onSwitchChange = () => {
+    setAnyoneCanJoin(!anyoneCanJoin);
+  };
 
   const onUserChange = (value: string) => {
     form.setFieldsValue({ invitedUser: value });
@@ -55,11 +63,10 @@ const OneOnOneMeeting = () => {
     <>
       <Header />
       <div className="form-container">
-        <Form
-          form={form}
-          name="oneOnOneMeeting"
-          layout="vertical"
-          onFinish={onFinish}>
+        <Form form={form} name="oneOnOneMeeting" onFinish={onFinish}>
+          <Form.Item name="anyoneCanJoin">
+            <MeetingSwitch title="Anyone can join" onChange={onSwitchChange} />
+          </Form.Item>
           <Form.Item
             name="meetingName"
             rules={[
@@ -72,6 +79,7 @@ const OneOnOneMeeting = () => {
             name="invitedUser"
             rules={[{ required: true, message: "Please select a user" }]}>
             <MeetingUserField
+              anyoneCanJoin={anyoneCanJoin}
               title="Invite User"
               options={users}
               onChange={onUserChange}
@@ -121,4 +129,4 @@ const OneOnOneMeeting = () => {
   );
 };
 
-export default OneOnOneMeeting;
+export default VideoConference;

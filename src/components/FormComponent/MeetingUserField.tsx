@@ -6,6 +6,7 @@ const MeetingUserField = ({
   title,
   onChange,
   options,
+  anyoneCanJoin,
 }: MeetingUserFieldProps) => {
   const { Text } = Typography;
 
@@ -25,12 +26,16 @@ const MeetingUserField = ({
         {title}
       </Text>
       <Select
+        mode={anyoneCanJoin ? "multiple" : undefined}
         defaultValue="Select a user"
         onChange={onChange}
         options={options}
         size="large"
         onFocus={handleFocus}
         onBlur={handleBlur}
+        style={{
+          marginTop: "8px",
+        }}
       />
     </div>
   );

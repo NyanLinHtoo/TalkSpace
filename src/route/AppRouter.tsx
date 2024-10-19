@@ -4,6 +4,7 @@ import ErrorPage from "../ErrorPageHandler/ErrorPage";
 import Dashboard from "../Pages/Dashboard";
 import CreateMeeting from "../Pages/CreateMeeting";
 import OneOnOneMeeting from "../Pages/OneOnOneMeeting";
+import VideoConference from "../Pages/VideoConference";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -20,6 +21,11 @@ const AppRouter = () => {
     {
       path: "/create1on1",
       element: <OneOnOneMeeting />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/videoConference",
+      element: <VideoConference />,
       errorElement: <ErrorPage />,
     },
     {
