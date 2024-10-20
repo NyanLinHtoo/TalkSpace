@@ -4,7 +4,6 @@ import useAuth from "../hooks/useAuth";
 import useFetchUsers from "../hooks/useFetchUsers";
 import Header from "../components/Header";
 import MeetingNameField from "../components/FormComponent/MeetingNameField";
-import MeetingUserField from "../components/FormComponent/MeetingUserField";
 import MeetingDateField from "../components/FormComponent/MeetingDateField";
 import { MeetingFormValues } from "../utils/Types";
 import "../App.css";
@@ -16,6 +15,7 @@ import { useAppSelector } from "../app/hook";
 import { toast } from "sonner";
 import MeetingSwitch from "../components/FormComponent/MeetingSwitch";
 import { useState } from "react";
+import MeetingMultipleUser from "../components/FormComponent/MeetingMultipleUser";
 
 const VideoConference = () => {
   const [form] = Form.useForm<MeetingFormValues>();
@@ -78,7 +78,7 @@ const VideoConference = () => {
           <Form.Item
             name="invitedUser"
             rules={[{ required: true, message: "Please select a user" }]}>
-            <MeetingUserField
+            <MeetingMultipleUser
               anyoneCanJoin={anyoneCanJoin}
               title="Invite User"
               options={users}

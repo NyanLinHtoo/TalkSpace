@@ -2,7 +2,7 @@ import { Select, Typography } from "antd";
 import { MeetingUserFieldProps } from "../../utils/Types";
 import { useState } from "react";
 
-const MeetingUserField = ({
+const MeetingMultipleUser = ({
   title,
   onChange,
   options,
@@ -25,6 +25,7 @@ const MeetingUserField = ({
         {title}
       </Text>
       <Select
+        mode="multiple"
         defaultValue="Select a user"
         onChange={onChange}
         options={options}
@@ -38,5 +39,4 @@ const MeetingUserField = ({
     </div>
   );
 };
-
-export default MeetingUserField;
+export default MeetingMultipleUser;
