@@ -23,8 +23,10 @@ const OneOnOneMeeting = () => {
   const uid = useAppSelector((state) => state.auth.userInfo?.uid);
   useAuth();
 
-  const onUserChange = (value: string) => {
-    form.setFieldsValue({ invitedUser: value });
+  const onUserChange = (value: string | number | null) => {
+    form.setFieldsValue({
+      invitedUser: value !== null ? String(value) : undefined,
+    });
   };
 
   const onDateChange: DatePickerProps["onChange"] = (date) => {
@@ -36,6 +38,8 @@ const OneOnOneMeeting = () => {
   };
 
   const onFinish = async (values: MeetingFormValues) => {
+    console.log(values);
+
     const meetingId = generateMeetingId();
     await addDoc(meetingRef, {
       createdBy: uid,

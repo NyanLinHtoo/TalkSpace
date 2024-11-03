@@ -18,8 +18,9 @@ export interface MeetingNameFieldProps {
 }
 
 export interface MeetingUserFieldProps {
+  anyoneCanJoin?: boolean;
   title: string;
-  onChange: (value: string) => void;
+  onChange: (value: string | number | null) => void;
   options: UserType[];
 }
 

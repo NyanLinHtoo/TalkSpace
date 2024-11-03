@@ -31,8 +31,10 @@ const VideoConference = () => {
     setAnyoneCanJoin(!anyoneCanJoin);
   };
 
-  const onUserChange = (value: string) => {
-    form.setFieldsValue({ invitedUser: value });
+  const onUserChange = (value: string | number | null) => {
+    form.setFieldsValue({
+      invitedUser: value !== null ? String(value) : undefined,
+    });
   };
 
   const onDateChange: DatePickerProps["onChange"] = (date) => {
@@ -44,18 +46,24 @@ const VideoConference = () => {
   };
 
   const onFinish = async (values: MeetingFormValues) => {
+    console.log(values);
+
     const meetingId = generateMeetingId();
     await addDoc(meetingRef, {
       createdBy: uid,
       meetingId,
       meetingName: values.meetingName,
-      meetingType: "1-on-1",
-      invitedUser: values.invitedUser,
+      meetingType: anyoneCanJoin ? "Anyone-can-join" : "Video-Conference",
+      invitedUser: anyoneCanJoin ? [] : values.invitedUser,
       meetingDate: values.meetingDate,
-      maxUsers: 1,
+      maxUsers: anyoneCanJoin ? +values.invitedUser : values.invitedUser.length,
       status: true,
     });
-    toast.success("One On One Meeting created successfully");
+    toast.success(
+      anyoneCanJoin
+        ? "Anyone can join meeting created successfully"
+        : "Video Conference created successfully"
+    );
     navigate("/");
   };
 
