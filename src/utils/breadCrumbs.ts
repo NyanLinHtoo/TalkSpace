@@ -19,42 +19,12 @@ export const getBreadCrumbItems = (location: Location): BreadcrumbItem[] => {
       createBreadCrumbItem("/create", "Create Meeting"),
       createBreadCrumbItem("/create1on1", "Create One On One Meeting"),
     ];
+  } else if (pathname === "/videoConference") {
+    return [
+      ...defaultItems,
+      createBreadCrumbItem("/create", "Create Meeting"),
+      createBreadCrumbItem("/videoConference", "Create Video Conference"),
+    ];
   }
   return defaultItems;
 };
-
-// const capitalizeFirstLetter = (string: string): string =>
-//   string.charAt(0).toUpperCase() + string.slice(1);
-
-// const createBreadcrumbItems = (
-//   location: Location,
-//   baseUrl: string = ""
-// ): BreadcrumbItem[] => {
-//   const pathSnippets = location.pathname.split("/").filter((i) => i);
-
-//   return pathSnippets.map((_, index) => {
-//     const url = `${baseUrl}/${pathSnippets.slice(0, index + 1).join("/")}`;
-//     let title = capitalizeFirstLetter(pathSnippets[index]);
-
-//     // Special cases
-//     if (url === "/create") {
-//       title = "Create Meeting";
-//     } else if (url === "/create1on1") {
-//       title = "Create One On One Meeting";
-//     }
-//     return createBreadCrumbItem(url, title);
-//   });
-// };
-
-// export const getBreadcrumbItems = (location: Location): BreadcrumbItem[] => [
-//   createBreadCrumbItem("/", "Dashboard"),
-//   ...createBreadcrumbItems(location),
-// ];
-
-// export const getOneOnOneBreadcrumbItems = (
-//   location: Location
-// ): BreadcrumbItem[] => [
-//   createBreadCrumbItem("/", "Dashboard"),
-//   getBreadcrumbItems(location),
-//   ...createBreadcrumbItems(location, "/create1on1"),
-// ];
